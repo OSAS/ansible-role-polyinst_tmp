@@ -1,0 +1,14 @@
+---
+# TODO check if selinux is here ?
+- set_fact: namespace_line="session    required     pam_namespace.so"
+
+- lineinfile: dest=/etc/pam.d/{{ item }} line="{{ namespace_line }}"
+  when: ansible_os_family == 'RedHat'
+  with_items:
+  - login
+  - sshd
+
+- lineinfile: dest=/etc/pam.d/common-session line="{{ namespace_line }}"
+  when: ansible_os_family == 'Debian'
+
+- copy: dest=/etc/security/namespace.d/tmp.conf src=tmp.conf
