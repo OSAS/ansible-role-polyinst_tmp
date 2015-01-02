@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Michael Scherer
-  description: Setup polyinstanciated directory for /tmp
+  description: Setup polyinstanciated directories for /tmp
   company: Red Hat
   license: MIT
   min_ansible_version: 1.2
