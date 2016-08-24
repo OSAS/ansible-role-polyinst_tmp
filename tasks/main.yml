@@ -1,12 +1,9 @@
 ---
 # TODO check if selinux is here ?
-- lineinfile: dest=/etc/pam.d/{{ item }} line="{{ namespace_line }}"
-  when: ansible_os_family == 'RedHat'
-  with_items:
-  - login
-  - sshd
-
-- lineinfile: dest=/etc/pam.d/common-session line="{{ namespace_line }}"
-  when: ansible_os_family == 'Debian'
+- name: Deploy the pam configuration
+  lineinfile:
+    dest: "/etc/pam.d/{{ item }}"
+    line: "{{ namespace_line }}"
+  with_items: "{{ pam_files[ansible_os_family] }}"
 
 - copy: dest=/etc/security/namespace.d/tmp.conf src=tmp.conf
