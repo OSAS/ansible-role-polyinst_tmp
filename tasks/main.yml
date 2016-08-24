@@ -6,4 +6,7 @@
     line: "{{ namespace_line }}"
   with_items: "{{ pam_files[ansible_os_family] }}"
 
-- copy: dest=/etc/security/namespace.d/tmp.conf src=tmp.conf
+- name: Deploy the namespace.d configuration
+  copy:
+    dest: /etc/security/namespace.d/tmp.conf
+    src: tmp.conf
