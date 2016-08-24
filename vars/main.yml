@@ -1,0 +1,7 @@
+namespace_line: "session    required     pam_namespace.so"
+pam_files:
+  Debian:
+  - common-session
+  RedHat:
+  - login
+  - sshd
