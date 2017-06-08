@@ -10,3 +10,10 @@
   copy:
     dest: /etc/security/namespace.d/tmp.conf
     src: tmp.conf
+
+- name: Set boolean for SELinux system
+  seboolean:
+    name: polyinstantiation_enabled
+    state: yes
+    persistent: yes
+  when: ansible_selinux is not False
